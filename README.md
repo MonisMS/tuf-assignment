@@ -34,13 +34,13 @@ The component is inspired by a physical wall calendar with a strong visual heade
 1. Install dependencies
 
 ```bash
-npm install
+corepack pnpm install
 ```
 
 2. Start development server
 
 ```bash
-npm run dev
+corepack pnpm dev
 ```
 
 3. Open http://localhost:3000
@@ -48,10 +48,10 @@ npm run dev
 ## Scripts
 
 ```bash
-npm run dev
-npm run lint
-npm run build
-npm run start
+corepack pnpm dev
+corepack pnpm lint
+corepack pnpm build
+corepack pnpm start
 ```
 
 ## Interaction Model
@@ -81,7 +81,7 @@ npm run start
 ## Submission Links
 
 - Repository: add your public repository URL here
-- Video demo: add Loom or YouTube URL here
+- Video demo: optional for this local handoff (not included)
 - Live demo (optional): add deployment URL here
 
 ## Future Extensions
