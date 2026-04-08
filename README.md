@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Interactive Wall Calendar Component
 
-## Getting Started
+Frontend engineering challenge submission built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+The component is inspired by a physical wall calendar with a strong visual header, month grid, integrated notes panel, and responsive behavior across desktop and mobile.
+
+## Highlights
+
+- Wall calendar visual style with hero image panel and calendar sheet framing
+- Interactive date range selection with clear start, end, and in-between states
+- Dual notes system:
+	- Per-date notes
+	- Per-range notes
+- Local storage persistence for current month, selected range, and all notes
+- Keyboard-friendly interaction:
+	- Arrow keys to move between day cells
+	- Enter or Space to select
+	- Escape to clear selection
+- Responsive layout for desktop and mobile
+- Added polish features:
+	- Month transition animation
+	- Weekend emphasis
+	- Holiday markers for common US holidays
+
+## Tech Stack
+
+- Next.js App Router
+- React + TypeScript
+- Tailwind CSS v4
+- Browser localStorage for persistence
+
+## Run Locally
+
+1. Install dependencies
+
+```bash
+npm install
+```
+
+2. Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+npm run lint
+npm run build
+npm run start
+```
 
-## Learn More
+## Interaction Model
 
-To learn more about Next.js, take a look at the following resources:
+- First day click sets range start
+- Second day click sets range end (auto-normalized if selected in reverse)
+- Clicking clear removes current selection
+- Date Note mode writes notes for the currently selected day
+- Range Note mode writes notes for the currently selected full range
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Accessibility Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Focus-visible styles for interactive controls
+- ARIA labels on day cells including holiday and note metadata
+- Keyboard support for calendar cell traversal and selection
+- Selection and metadata are communicated through text and shape, not color alone
 
-## Deploy on Vercel
+## Manual QA Checklist
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Desktop layout keeps hero, grid, and notes readable
+- Mobile layout remains fully usable for range selection and note editing
+- Range selection shows start, end, and in-range states correctly
+- Per-date and per-range notes can be created, updated, and deleted
+- Refresh preserves month, selection, and notes from local storage
+- Keyboard navigation and selection behavior works as documented
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Submission Links
+
+- Repository: add your public repository URL here
+- Video demo: add Loom or YouTube URL here
+- Live demo (optional): add deployment URL here
+
+## Future Extensions
+
+- Editable holiday lists
+- Theme extraction from user-selected hero image
+- Print-optimized monthly export
