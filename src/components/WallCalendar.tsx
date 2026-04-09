@@ -378,7 +378,7 @@ export default function WallCalendar() {
               <div className="hero-shimmer absolute inset-0" aria-hidden="true" />
               <div className="relative z-10 flex h-full flex-col justify-between gap-3">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-[10px] tracking-[0.28em] text-sky-100 sm:text-[11px]">WALL CALENDAR</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-50">Wall Calendar</p>
                   <Badge className={`hero-badge hidden border text-[10px] tracking-[0.14em] uppercase backdrop-blur sm:inline-flex ${heroTheme.badgeClass}`}>
                     {heroTheme.label} issue
                   </Badge>
@@ -388,15 +388,15 @@ export default function WallCalendar() {
                   <h1
                     key={monthTitleKey}
                     data-dir={monthNavDirection}
-                    className="month-title-swap mt-1 text-2xl font-semibold text-white sm:text-3xl lg:text-4xl"
+                    className="month-title-swap mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-3xl font-black text-white sm:text-4xl lg:text-5xl"
                   >
                     {prettyMonthTitle(viewMonth)}
                   </h1>
                 </div>
 
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-[11px] text-sky-100/90">Select a range and capture monthly notes.</p>
-                  <Badge className="hidden border-0 bg-white/20 text-white backdrop-blur sm:inline-flex">
+                  <p className="text-sm font-medium text-sky-50">Select a range and capture monthly notes.</p>
+                  <Badge className="hidden border-0 bg-white/25 text-white backdrop-blur sm:inline-flex">
                     Touch + Keyboard Ready
                   </Badge>
                 </div>
@@ -404,15 +404,16 @@ export default function WallCalendar() {
             </div>
 
             <CardContent className="flex min-h-0 flex-1 flex-col gap-3 p-3 sm:p-4 md:p-5">
-              <div className="toolbar-shell flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200/80 bg-slate-50/75 px-2 py-2 sm:px-3">
-                <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+              <div className="toolbar-shell flex flex-col items-stretch justify-center gap-1.5 rounded-2xl border border-slate-200/80 bg-linear-to-b from-white/95 to-slate-50/85 px-3 py-2 sm:flex-row sm:items-center sm:justify-between sm:px-4 sm:py-3">
+                {/* Group 1: Navigation */}
+                <div className="inline-flex items-center gap-1 rounded-full border border-slate-200/80 bg-white/85 p-1 shadow-sm">
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => navigateMonth(-1)}
                     aria-label="Previous month"
-                    className="micro-btn rounded-full"
+                    className="micro-btn rounded-full text-slate-700 hover:bg-slate-100"
                   >
                     <ChevronLeft className="size-4" />
                     Prev
@@ -423,12 +424,12 @@ export default function WallCalendar() {
                     size="sm"
                     onClick={() => navigateMonth(1)}
                     aria-label="Next month"
-                    className="micro-btn rounded-full"
+                    className="micro-btn rounded-full text-slate-700 hover:bg-slate-100"
                   >
                     Next
                     <ChevronRight className="size-4" />
                   </Button>
-                  <Separator orientation="vertical" className="mx-0.5 h-5" />
+                  <Separator orientation="vertical" className="mx-0.5 h-5 bg-slate-300/40" />
                   <Button
                     type="button"
                     variant="ghost"
@@ -436,22 +437,26 @@ export default function WallCalendar() {
                     onClick={jumpToCurrentMonth}
                     disabled={isViewingCurrentMonth}
                     aria-label="Jump to current month"
-                    className="micro-btn rounded-full"
+                    className="micro-btn rounded-full text-slate-700 hover:bg-slate-100 disabled:opacity-50"
                   >
                     <LocateFixed className="size-4" />
                     Today
                   </Button>
                 </div>
 
-                <Badge variant="outline" className="toolbar-month-chip hidden rounded-full px-3 py-1 text-xs md:inline-flex">
-                  {prettyMonthTitle(viewMonth)}
-                </Badge>
-
-                <div className="flex items-center gap-1.5">
-                  <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-[0.12em] uppercase ${rangeStatusTone}`}>
+                {/* Group 2: Month & Status */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="outline" className="toolbar-month-chip hidden rounded-full px-3 py-1.5 text-xs font-semibold md:inline-flex">
+                    {prettyMonthTitle(viewMonth)}
+                  </Badge>
+                  <span className={`rounded-full px-3 py-1.5 text-xs font-bold tracking-wide uppercase ${rangeStatusTone}`}>
                     {rangeStatusLabel}
                   </span>
-                  <Badge variant="secondary" className="rounded-full">
+                </div>
+
+                {/* Group 3: Actions */}
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <Badge variant="secondary" className="rounded-full px-2.5 py-1 text-xs font-semibold">
                     <CalendarDays className="mr-1 size-3.5" /> {activeNoteCount} notes
                   </Badge>
                   <Button
@@ -460,7 +465,7 @@ export default function WallCalendar() {
                     variant="outline"
                     onClick={clearSelection}
                     disabled={!hasRangeAnchor && !hasCompleteRange}
-                    className="micro-btn rounded-full"
+                    className="micro-btn rounded-full text-xs font-semibold"
                   >
                     Clear Range
                   </Button>
@@ -532,7 +537,7 @@ export default function WallCalendar() {
                       onClick={() => handleDaySelection(cell.iso)}
                       onFocus={() => setFocusedDayIso(cell.iso)}
                       onKeyDown={(event) => handleDayKeyDown(event, index, cell.iso)}
-                      className={`calendar-cell relative aspect-square min-h-[2.35rem] rounded-lg border border-white/70 px-1.5 pb-1 pt-1 text-left shadow-[0_1px_0_rgba(255,255,255,0.7)] transition duration-150 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-sky-600 sm:min-h-0 sm:rounded-xl sm:px-2 sm:pb-2 ${toneClass}`}
+                      className={`calendar-cell relative aspect-square min-h-11 rounded-lg border px-2 pb-1.5 pt-1.5 text-left shadow-sm transition duration-150 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-600 sm:min-h-12 sm:rounded-xl sm:px-2.5 sm:pb-2 sm:text-sm md:min-h-0 ${toneClass}`}
                       data-active={isStart || isEnd ? "bound" : inRange ? "range" : "none"}
                       data-range-role={rangeRole}
                       data-outside={!cell.inCurrentMonth}
@@ -564,7 +569,7 @@ export default function WallCalendar() {
 
                       {hasDateNote && (
                         <span
-                          className={`absolute bottom-1 left-1.5 h-1.5 w-1.5 rounded-full ${isStart || isEnd ? "bg-white" : "bg-sky-500"}`}
+                          className={`absolute bottom-1.5 right-1.5 h-2 w-2 rounded-full shadow-md ${isStart || isEnd ? "bg-white" : "bg-indigo-500"}`}
                           aria-hidden="true"
                         />
                       )}
@@ -575,62 +580,62 @@ export default function WallCalendar() {
             </CardContent>
           </Card>
 
-          <Card className="premium-panel panel-right flex min-h-80 flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-[linear-gradient(180deg,#f8fbfe_0%,#f3f7fb_100%)] py-0 ring-1 ring-slate-200/60 xl:min-h-0">
-            <CardHeader className="space-y-1 pb-3 pt-4">
-              <CardTitle className="text-xl">Notes</CardTitle>
-              <CardDescription className="flex items-center gap-2 text-xs sm:text-sm">
-                <Sparkles className="size-4 text-sky-500" />
-                Keep plans attached to dates or full ranges.
+          <Card className="premium-panel panel-right flex min-h-80 flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 py-0 ring-1 ring-slate-200/60 xl:min-h-0">
+            <CardHeader className="space-y-1 border-b border-slate-200/80 pb-3 pt-5">
+              <CardTitle className="text-2xl font-bold text-slate-900">Notes</CardTitle>
+              <CardDescription className="flex items-center gap-2 text-sm text-slate-600">
+                <Sparkles className="size-4 text-indigo-500" />
+                Attach plans to dates or full ranges.
               </CardDescription>
             </CardHeader>
 
-            <CardContent className="min-h-0 flex-1 space-y-4 overflow-visible px-3 pb-3 sm:px-4 sm:pb-4 md:px-5 md:pb-5 xl:overflow-y-auto">
+            <CardContent className="min-h-0 flex-1 space-y-4 overflow-visible px-4 pb-4 pt-4 sm:px-5 sm:pb-5 xl:overflow-y-auto">
               <Tabs
                 value={noteMode}
                 onValueChange={(value) => setNoteMode(value === "range" ? "range" : "date")}
                 className="w-full"
               >
-                <TabsList className="grid w-full grid-cols-2 rounded-full" variant="default">
-                  <TabsTrigger value="date" className="rounded-full">
+                <TabsList className="grid w-full grid-cols-2 rounded-full border border-slate-200/80 bg-slate-100/60 p-1">
+                  <TabsTrigger value="date" className="rounded-full font-semibold">
                     Date Note
                   </TabsTrigger>
-                  <TabsTrigger value="range" className="rounded-full">
+                  <TabsTrigger value="range" className="rounded-full font-semibold">
                     Range Note
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
 
-              <div className="space-y-2 rounded-2xl border border-slate-200/80 bg-white/80 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
-                <p className="text-xs font-semibold uppercase tracking-[0.11em] text-slate-500">Selection</p>
-                <p className="text-xs text-slate-700 sm:text-sm">{selectedRangeLabel}</p>
+              <div className="space-y-2.5 rounded-2xl border-1.5 border-slate-200/90 bg-linear-to-b from-white/98 to-slate-50/90 p-4 shadow-sm">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-700">Current Selection</p>
+                <p className="text-sm font-semibold text-slate-900">{selectedRangeLabel}</p>
 
-                <div className="flex flex-wrap items-center gap-1.5">
+                <div className="flex flex-wrap items-center gap-2 pt-1">
                   <Badge
                     variant="outline"
-                    className={`rounded-full text-[11px] ${hasNoteTarget ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-slate-200 bg-slate-100 text-slate-600"}`}
+                    className={`rounded-full text-xs font-semibold transition ${hasNoteTarget ? "border-emerald-300 bg-emerald-50 text-emerald-700" : "border-slate-300 bg-slate-50 text-slate-700"}`}
                   >
-                    <CircleDot className="mr-1 size-3.5" />
+                    <CircleDot className="mr-1.5 size-3.5" />
                     {hasNoteTarget ? "Target active" : "Select target"}
                   </Badge>
                   {hasUnsavedNoteChanges && (
-                    <Badge variant="outline" className="rounded-full border-amber-200 bg-amber-50 text-[11px] text-amber-700">
-                      Unsaved changes
+                    <Badge variant="outline" className="rounded-full border-amber-300 bg-amber-50 text-xs font-semibold text-amber-800">
+                      Unsaved
                     </Badge>
                   )}
                 </div>
 
                 {rangeStart && rangeEnd && (
-                  <Badge variant="secondary" className="rounded-full text-[11px]">
-                    {rangeNoteCount} day note{rangeNoteCount === 1 ? "" : "s"} in this range
+                  <Badge variant="secondary" className="rounded-full text-xs font-semibold">
+                    {rangeNoteCount} day note{rangeNoteCount === 1 ? "" : "s"} in range
                   </Badge>
                 )}
               </div>
 
-              <Separator />
+              <Separator className="bg-slate-200/60" />
 
-              <div className="space-y-2">
-                <label htmlFor="note-input" className="text-xs font-medium text-slate-700 sm:text-sm">
-                  {noteMode === "date" ? "Selected day note" : "Selected range note"}
+              <div className="space-y-3">
+                <label htmlFor="note-input" className="text-sm font-bold text-slate-900">
+                  {noteMode === "date" ? "Date Note" : "Range Note"}
                 </label>
                 <Textarea
                   id="note-input"
@@ -651,7 +656,7 @@ export default function WallCalendar() {
                         : "Select a full range to write a range note"
                   }
                   disabled={noteMode === "date" ? !activeDayIso : !selectedRangeKey}
-                  className="min-h-24 resize-none rounded-2xl border-slate-200 bg-white/95 text-sm sm:min-h-28 sm:resize-y"
+                  className="min-h-24 resize-none rounded-xl border-slate-300 bg-white text-sm font-medium shadow-sm sm:min-h-32 sm:resize-y"
                 />
 
                 <div className="flex flex-wrap gap-1.5 max-sm:overflow-x-auto max-sm:pb-1">
@@ -659,9 +664,9 @@ export default function WallCalendar() {
                     <Button
                       key={item}
                       type="button"
-                      size="xs"
+                      size="sm"
                       variant="outline"
-                      className="micro-btn rounded-full"
+                      className="micro-btn rounded-full text-xs font-semibold"
                       onClick={() => {
                         if (!noteTargetKey) return;
                         setDraftByTarget((current) => {
@@ -679,39 +684,39 @@ export default function WallCalendar() {
                   ))}
                 </div>
 
-                <div className="notes-meta-row flex items-center justify-between text-[11px] text-slate-500">
-                  <span>Tip: Ctrl/Cmd + S to save quickly</span>
-                  <span>{noteCharacterCount} chars</span>
+                <div className="flex items-center justify-between border-t border-slate-200/80 pt-2 text-xs text-slate-600">
+                  <span className="font-medium">Tip: Ctrl/Cmd + S to save</span>
+                  <span className="font-semibold text-slate-700">{noteCharacterCount} chars</span>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 border-t border-slate-200/80 pt-4">
                 <Button
                   type="button"
                   onClick={saveNote}
                   disabled={!hasNoteTarget || !hasUnsavedNoteChanges}
-                  className={`rounded-full ${savedPulse ? "save-pulse" : "micro-btn"}`}
+                  className={`flex-1 rounded-lg font-bold ${savedPulse ? "save-pulse" : "micro-btn"} bg-linear-to-r from-indigo-600 to-indigo-700 text-white hover:from-indigo-700 hover:to-indigo-800 disabled:from-slate-300 disabled:to-slate-400`}
                 >
-                  <Save className="mr-1 size-4" />
-                  {savedPulse ? "Saved" : hasUnsavedNoteChanges ? "Save Note" : "Saved"}
+                  <Save className="mr-2 size-4" />
+                  {savedPulse ? "Saved!" : hasUnsavedNoteChanges ? "Save Note" : "Saved"}
                 </Button>
                 <Button
                   type="button"
                   onClick={deleteNote}
                   variant="outline"
                   disabled={!hasNoteTarget || !currentStoredNote}
-                  className="micro-btn rounded-full"
+                  className="micro-btn rounded-lg border-slate-300 text-slate-700 hover:bg-red-50 hover:text-red-700 disabled:opacity-40"
                 >
-                  <Trash2 className="mr-1 size-4" /> Delete
+                  <Trash2 className="mr-2 size-4" /> Delete
                 </Button>
               </div>
 
-              <div aria-live="polite" className="text-xs text-slate-600">
+              <div aria-live="polite" className="border-t border-slate-200/80 pt-3 text-xs font-medium text-slate-600">
                 {savedPulse
-                  ? "Note saved successfully."
+                  ? "✓ Note saved successfully."
                   : focusedDayIso
-                    ? `Focused: ${prettyLongDate(focusedDayIso)}${focusedDayHasNote ? ", has note" : ""}. Enter selects.`
-                    : "Arrow keys move focus. Enter selects. Esc clears selection."}
+                    ? `Focused: ${prettyLongDate(focusedDayIso)}${focusedDayHasNote ? ", has note" : ""}. Press Enter to select.`
+                    : "Arrow keys to move • Enter to select • Esc to clear."}
               </div>
             </CardContent>
           </Card>

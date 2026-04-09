@@ -63,6 +63,8 @@ h2,
 h3 {
   font-family: var(--font-oswald), "Trebuchet MS", sans-serif;
   letter-spacing: 0.02em;
+  font-weight: 700;
+  color: oklch(0.12 0.04 252);
 }
 
 .bg-app-gradient {
@@ -203,12 +205,17 @@ h3 {
 
 .toolbar-shell {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.84),
-    0 8px 20px -20px rgba(6, 43, 75, 0.5);
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 2px 8px rgba(80, 120, 160, 0.15);
+  border-bottom: 1px solid rgba(80, 120, 160, 0.25);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(250, 252, 255, 0.85));
 }
 
 .toolbar-month-chip {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 250, 255, 0.75));
+  background: linear-gradient(180deg, oklch(1 0.004 240), rgba(245, 250, 255, 0.85));
+  border: 1.5px solid rgba(80, 120, 160, 0.25);
+  color: oklch(0.15 0.045 252);
+  font-weight: 600;
 }
 
 .notes-meta-row {
@@ -230,17 +237,21 @@ h3 {
   pointer-events: none;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.85),
-    inset 0 0 0 1px rgba(132, 171, 209, 0.15);
+    inset 0 0 0 1px rgba(80, 120, 160, 0.35);
 }
 
 .weekday-head {
   border-radius: 0.75rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(245, 250, 255, 0.28));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(245, 250, 255, 0.55));
   letter-spacing: 0.15em;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: oklch(0.15 0.045 252);
 }
 
 .weekday-head[data-weekend="true"] {
-  color: oklch(0.52 0.13 22);
+  color: oklch(0.18 0.06 22);
 }
 
 .micro-btn {
@@ -248,17 +259,20 @@ h3 {
     transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 200ms ease,
     background-color 180ms ease,
-    border-color 180ms ease;
+    border-color 180ms ease,
+    color 180ms ease;
+  font-weight: 500;
 }
 
 .micro-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px -10px rgba(7, 41, 78, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -8px rgba(50, 100, 180, 0.35);
+  background-color: rgba(240, 245, 255, 0.8);
 }
 
 .micro-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 6px -4px rgba(7, 41, 78, 0.38);
+  box-shadow: 0 3px 8px -4px rgba(50, 100, 180, 0.25);
 }
 
 .calendar-cell {
@@ -268,7 +282,11 @@ h3 {
     transform 150ms ease,
     box-shadow 200ms ease,
     background-color 180ms ease,
-    color 180ms ease;
+    color 180ms ease,
+    border-color 180ms ease;
+  color: oklch(0.15 0.045 252);
+  border: 1.5px solid rgba(150, 170, 200, 0.3);
+  font-weight: 500;
 }
 
 .calendar-cell:active {
@@ -277,12 +295,14 @@ h3 {
 
 .calendar-cell[data-focused="true"] {
   box-shadow:
-    0 0 0 1px rgba(53, 138, 209, 0.35),
-    0 10px 20px -16px rgba(10, 77, 138, 0.55);
+    0 0 0 2px rgba(85, 140, 220, 0.6),
+    0 12px 24px -14px rgba(30, 80, 150, 0.65);
+  background-color: rgba(225, 235, 248, 0.6);
 }
 
 .calendar-cell[data-has-note="true"][data-range-role="none"] {
-  border-color: rgba(125, 184, 236, 0.42);
+  border-color: oklch(0.55 0.22 265);
+  box-shadow: 0 0 0 2px oklch(0.55 0.22 265 / 0.2);
 }
 
 .calendar-cell::before {
@@ -295,43 +315,39 @@ h3 {
   pointer-events: none;
   opacity: 0;
   transition: opacity 180ms ease, background-color 180ms ease;
+  display: none;
 }
 
 .calendar-cell[data-range-role="middle"]::before {
-  left: -8%;
-  right: -8%;
-  opacity: 1;
-  background: linear-gradient(90deg, rgba(123, 188, 245, 0.38), rgba(94, 170, 234, 0.3));
+  display: none;
 }
 
 .calendar-cell[data-range-role="start"]::before {
-  left: 50%;
-  right: -8%;
-  opacity: 1;
-  background: linear-gradient(90deg, rgba(123, 188, 245, 0.35), rgba(94, 170, 234, 0.3));
+  display: none;
 }
 
 .calendar-cell[data-range-role="end"]::before {
-  left: -8%;
-  right: 50%;
-  opacity: 1;
-  background: linear-gradient(90deg, rgba(123, 188, 245, 0.3), rgba(94, 170, 234, 0.35));
+  display: none;
 }
 
 .calendar-cell[data-range-role="middle"] {
-  border-color: rgba(125, 185, 236, 0.42);
+  border-color: rgba(80, 130, 240, 0.9);
   box-shadow:
-    inset 0 0 0 1px rgba(94, 163, 227, 0.24),
-    0 1px 0 rgba(255, 255, 255, 0.72);
+    inset 0 0 0 1px rgba(140, 175, 255, 0.6),
+    0 2px 6px -6px rgba(40, 90, 180, 0.3);
+  background-color: rgba(180, 215, 255, 0.8);
 }
 
 .calendar-cell[data-range-role="start"],
 .calendar-cell[data-range-role="end"],
 .calendar-cell[data-range-role="single"] {
-  border-color: rgba(52, 132, 205, 0.85);
+  border-color: oklch(0.55 0.22 265);
+  background: linear-gradient(135deg, oklch(0.65 0.2 265), oklch(0.63 0.18 260));
+  color: oklch(0.99 0.01 240);
+  font-weight: 700;
   box-shadow:
-    0 10px 22px -14px rgba(14, 85, 153, 0.62),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    0 6px 14px -8px rgba(85, 100, 200, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .calendar-cell[data-range-role="single"]::before {
@@ -339,31 +355,40 @@ h3 {
 }
 
 .calendar-cell[data-outside="true"] {
-  background-image: linear-gradient(180deg, rgba(221, 233, 245, 0.38), rgba(210, 223, 238, 0.25));
+  background-image: linear-gradient(180deg, rgba(221, 233, 245, 0.55), rgba(210, 223, 238, 0.4));
+  color: oklch(0.35 0.035 252);
+  opacity: 0.75;
 }
 
 .calendar-cell[data-weekend="true"][data-outside="false"][data-active="none"] {
-  background-image: linear-gradient(180deg, rgba(255, 250, 251, 0.85), rgba(255, 245, 247, 0.6));
+  background-image: linear-gradient(180deg, rgba(255, 245, 250, 0.95), rgba(255, 240, 245, 0.75));
+  color: oklch(0.18 0.06 22);
 }
 
 .day-number {
   position: relative;
   z-index: 1;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+  font-weight: 600;
 }
 
 .calendar-cell:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow:
-    0 8px 18px -14px rgba(15, 68, 118, 0.45),
-    0 1px 0 rgba(255, 255, 255, 0.7);
+    0 12px 24px -12px rgba(50, 100, 180, 0.5),
+    inset 0 0 0 1.5px rgba(120, 160, 240, 0.4);
+  border-color: rgba(100, 150, 220, 0.6);
+  background-color: rgba(240, 245, 255, 0.7);
 }
 
 .calendar-cell:focus-visible {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow:
-    0 0 0 2px rgba(72, 154, 222, 0.5),
-    0 12px 20px -16px rgba(11, 70, 124, 0.6);
+    0 0 0 2.5px rgba(255, 255, 255, 0.8),
+    0 0 0 4px oklch(0.55 0.22 265),
+    0 14px 26px -14px rgba(50, 100, 180, 0.65);
+  border-color: oklch(0.55 0.22 265);
+  outline: none;
 }
 
 .calendar-cell[data-active="bound"] {
@@ -372,8 +397,8 @@ h3 {
 
 .calendar-cell[data-active="range"] {
   box-shadow:
-    inset 0 0 0 1px rgba(94, 163, 227, 0.33),
-    0 1px 0 rgba(255, 255, 255, 0.7);
+    inset 0 0 0 1px rgba(140, 175, 255, 0.6),
+    0 2px 6px -6px rgba(40, 90, 180, 0.3);
 }
 
 .save-pulse {
@@ -529,24 +554,30 @@ h3 {
 :root {
   --font-sans: var(--font-manrope);
   --font-heading: var(--font-oswald);
-  --background: oklch(0.97 0.011 240);
-  --foreground: oklch(0.31 0.045 252);
+  --background: oklch(0.975 0.008 240);
+  /* Significantly darker primary text for WCAG AA contrast */
+  --foreground: oklch(0.15 0.045 252);
   --card: oklch(1 0.004 240);
-  --card-foreground: oklch(0.28 0.04 252);
+  /* Much darker foreground for cards */
+  --card-foreground: oklch(0.12 0.04 252);
   --popover: oklch(1 0.004 240);
-  --popover-foreground: oklch(0.28 0.04 252);
-  --primary: oklch(0.62 0.16 241);
+  --popover-foreground: oklch(0.12 0.04 252);
+  /* Stronger violet-indigo accent from header aesthetic */
+  --primary: oklch(0.55 0.22 265);
   --primary-foreground: oklch(0.99 0.004 240);
   --secondary: oklch(0.94 0.02 238);
-  --secondary-foreground: oklch(0.34 0.05 252);
+  --secondary-foreground: oklch(0.18 0.05 252);
+  /* More visible secondary text */
   --muted: oklch(0.95 0.013 240);
-  --muted-foreground: oklch(0.5 0.04 250);
-  --accent: oklch(0.92 0.025 240);
-  --accent-foreground: oklch(0.35 0.05 252);
+  --muted-foreground: oklch(0.38 0.04 250);
+  /* Stronger accent for UI boundaries and selected states */
+  --accent: oklch(0.55 0.22 265);
+  --accent-foreground: oklch(0.99 0.01 242);
   --destructive: oklch(0.62 0.23 26);
-  --border: oklch(0.89 0.02 242);
-  --input: oklch(0.9 0.02 242);
-  --ring: oklch(0.68 0.14 240);
+  /* Much more visible borders */
+  --border: oklch(0.82 0.04 242);
+  --input: oklch(0.88 0.03 242);
+  --ring: oklch(0.55 0.22 265);
   --chart-1: oklch(0.72 0.18 242);
   --chart-2: oklch(0.74 0.12 198);
   --chart-3: oklch(0.66 0.1 169);
