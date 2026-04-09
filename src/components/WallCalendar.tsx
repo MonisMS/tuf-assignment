@@ -371,7 +371,7 @@ export default function WallCalendar() {
 
         <div className="grid-scroll grid min-h-0 flex-1 content-start gap-3 overflow-y-auto pr-1 xl:grid-cols-[minmax(0,1.68fr)_minmax(300px,0.92fr)] xl:overflow-visible">
           <Card className="premium-panel panel-left flex min-h-102 flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white py-0 ring-1 ring-slate-200/60 xl:min-h-0">
-            <div className="hero-panel relative h-28 overflow-hidden rounded-t-3xl p-4 sm:h-32 sm:p-5 lg:h-36">
+            <div className="hero-panel relative h-32 overflow-hidden rounded-t-3xl p-4 sm:h-40 sm:p-5 lg:h-44">
               <div className="absolute inset-0 bg-[url('/hero-calendar.svg')] bg-cover bg-center opacity-80" />
               <div className={`absolute inset-0 ${heroTheme.overlayClass}`} />
               <div className={`hero-orb absolute -right-14 top-2 h-24 w-24 rounded-full bg-linear-to-br blur-xl sm:h-28 sm:w-28 ${heroTheme.accentClass}`} />
@@ -388,7 +388,7 @@ export default function WallCalendar() {
                   <h1
                     key={monthTitleKey}
                     data-dir={monthNavDirection}
-                    className="month-title-swap mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-3xl font-black text-white sm:text-4xl lg:text-5xl"
+                    className="month-title-swap mt-1 text-2xl font-black text-white sm:text-4xl lg:text-5xl"
                   >
                     {prettyMonthTitle(viewMonth)}
                   </h1>
@@ -446,7 +446,7 @@ export default function WallCalendar() {
 
                 {/* Group 2: Month & Status */}
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="outline" className="toolbar-month-chip hidden rounded-full px-3 py-1.5 text-xs font-semibold md:inline-flex">
+                  <Badge variant="outline" className="toolbar-month-chip inline-flex rounded-full px-3 py-1.5 text-xs font-semibold">
                     {prettyMonthTitle(viewMonth)}
                   </Badge>
                   <span className={`rounded-full px-3 py-1.5 text-xs font-bold tracking-wide uppercase ${rangeStatusTone}`}>
@@ -473,7 +473,7 @@ export default function WallCalendar() {
               </div>
 
               <div
-                className="calendar-enter date-grid-surface grid min-h-0 flex-1 grid-cols-7 gap-1 rounded-2xl bg-[linear-gradient(160deg,#f7fafd_0%,#f2f7fb_100%)] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] sm:p-2"
+                className="calendar-enter date-grid-surface grid min-h-96 flex-1 grid-cols-7 gap-1 rounded-2xl bg-[linear-gradient(160deg,#f7fafd_0%,#f2f7fb_100%)] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] sm:min-h-112 sm:p-2 md:min-h-0"
                 role="grid"
                 aria-label={`Calendar month ${prettyMonthTitle(viewMonth)}`}
               >
@@ -537,7 +537,7 @@ export default function WallCalendar() {
                       onClick={() => handleDaySelection(cell.iso)}
                       onFocus={() => setFocusedDayIso(cell.iso)}
                       onKeyDown={(event) => handleDayKeyDown(event, index, cell.iso)}
-                      className={`calendar-cell relative aspect-square min-h-11 rounded-lg border px-2 pb-1.5 pt-1.5 text-left shadow-sm transition duration-150 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-600 sm:min-h-12 sm:rounded-xl sm:px-2.5 sm:pb-2 sm:text-sm md:min-h-0 ${toneClass}`}
+                      className={`calendar-cell relative aspect-square min-h-12 rounded-lg border px-2 pb-1.5 pt-1.5 text-left shadow-sm transition duration-150 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-600 sm:min-h-12 sm:rounded-xl sm:px-2.5 sm:pb-2 sm:text-sm md:min-h-0 ${toneClass}`}
                       data-active={isStart || isEnd ? "bound" : inRange ? "range" : "none"}
                       data-range-role={rangeRole}
                       data-outside={!cell.inCurrentMonth}
